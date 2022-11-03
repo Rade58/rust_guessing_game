@@ -1,6 +1,6 @@
 # Rust Guessing game
 
-EXAMPLE FROM THE BOOK:
+EXAMPLE INSPIRED BY:
 
 >> The Rust Programming Language
 >> by Steve Klabnik and Carol Nichols, with contributions from the Rust Community
