@@ -7,4 +7,6 @@ EXAMPLE INSPIRED BY:
 
 <https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html>
 
+# DEPENDANCIES SOURCE
 
+<https://crates.io/>
