@@ -12,29 +12,42 @@ fn main() {
 
     println!("secret number: {secret_number}");
 
-    println!("Input your guess!");
+    loop {
+        println!("Input your guess!");
+        let mut guess = String::new();
 
-    let mut guess = String::new();
+        // STANDARD INPUT PROMPT
+        // io::stdin()
+        std::io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read the line!");
 
-    // io::stdin()
-    std::io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read the line!");
+        // I DON'T WANT EXPECT, BECAUSE expect CRASHES PROGRAM
+        // WITH A MESSAGE YOU PROVIDED
+        // let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        // I WANT ERROR HANDLING WHEREE LOOP CONTINUES AFTER
+        // INVALID NON-u32 INPUT
 
-    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        // parse returns enum Result we can match
+        let guess: u32 = match guess.trim().parse() {
+            Result::Ok(num) => num,
+            Result::Err(_) => continue,
+        };
 
-    // match guess.cmp(&secret_number.to_string()) {
-    match guess.cmp(&secret_number) {
-        Ordering::Equal => {
-            println!("You guessed it! You won!")
-        }
-        Ordering::Greater => {
-            println!("Too big!")
-        }
-        Ordering::Less => {
-            println!("Too small!")
+        // match guess.cmp(&secret_number.to_string()) {
+        match guess.cmp(&secret_number) {
+            Ordering::Equal => {
+                println!("You guessed it! You won!");
+                break;
+            }
+            Ordering::Greater => {
+                println!("Too big!");
+            }
+            Ordering::Less => {
+                println!("Too small!");
+            }
         }
     }
 
-    println!("You guessed: {guess}");
+    // println!("You guessed: {guess}");
 }
